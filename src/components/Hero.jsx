@@ -1,53 +1,25 @@
-import { useEffect, useRef } from "react";
+import {useEffect, useRef} from "react";
 
 const Hero = () => {
-
     const videoRef = useRef();
 
     useEffect(() => {
-        const video = videoRef.current;
-
-        if (!video) return;
-
-        video.playbackRate = 2;
-
-        const handleCanPlay = () => {
-            video.play().catch(() => { });
-        };
-
-        video.addEventListener("canplay", handleCanPlay);
-
-        return () => {
-            video.removeEventListener("canplay", handleCanPlay);
-        };
+        if(videoRef.current) videoRef.current.playbackRate = 2;
     }, []);
 
     return (
         <section id="hero">
-
             <div>
                 <h1>MacBook Pro</h1>
-                <img src="/title.png" alt="MacBook Pro" />
+                <img src="/title.png" alt="MacBook Title" />
             </div>
 
-            {/* <video ref={videoRef} src="/videos/hero.webm" playsInline autoPlay muted preload="true" ></video> */}
+            <video ref={videoRef} src="/videos/hero.mp4" autoPlay muted playsInline />
 
-            <video
-                ref={videoRef}
-                className="hero-video"
-                src="/videos/hero.webm"
-                playsInline
-                autoPlay
-                muted
-                loop
-                preload="metadata"
-            />
             <button>Buy</button>
 
-            <p>From $1699 or $145 for 12 months</p>
-
+            <p>From $1599 or $133/mo for 12 months</p>
         </section>
-    );
+    )
 }
-
-export default Hero;
+export default Hero

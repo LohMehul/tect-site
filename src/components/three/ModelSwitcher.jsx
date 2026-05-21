@@ -6,7 +6,7 @@ import MacbookModel16 from "../models/Macbook-16.jsx";
 import MacbookModel14 from "../models/Macbook-14.jsx";
 import {useGSAP} from "@gsap/react";
 const ANIMATION_DURATION = 1;
-const OFFSET_DISTANCE = 6;
+const OFFSET_DISTANCE = 5;
 
 const fadeMeshes = (group, opacity) => {
     if(!group) return;
@@ -74,4 +74,4 @@ const ModelSwitcher = ({ scale, isMobile }) => {
         </>
     )
 }
-export default ModelSwitcher;
+export default ModelSwitcher

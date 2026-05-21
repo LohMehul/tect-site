@@ -1,49 +1,33 @@
-import { useGSAP } from "@gsap/react";
+import {useMediaQuery} from "react-responsive";
+import {useGSAP} from "@gsap/react";
 import gsap from 'gsap';
-import { memo, useRef } from "react";
 
-const Showcase = memo(() => {
-    const isTablet = window.innerWidth < 1024;
-    const videoRef = useRef(null);
-
+const Showcase = () => {
+    const isTablet = useMediaQuery({ query: '(max-width: 1024px)'});
 
     useGSAP(() => {
-        const ctx = gsap.context(() => {
-            if (!isTablet) {
-                videoRef.current?.play();
+        if(!isTablet) {
+            const timeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '#showcase',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true,
+                    pin: true,
+                }
+            });
 
-                const timeline = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: '#showcase',
-                        start: 'top top',
-                        end: 'bottom top',
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
-                    }
-                });
-
-                timeline
-                    .to('.mask img', {
-                        scale: 1.05,
-                        force3D: true,
-                    })
-                    .to('.content', {
-                        opacity: 1,
-                        y: 0,
-                        force3D: true,
-                        ease: 'none'
-                    });
-            }
-        });
-
-        return () => ctx.revert();
+            timeline
+                .to('.mask img', {
+                    transform: 'scale(1.1)'
+                }).to('.content', { opacity: 1, y: 0, ease: 'power1.in' });
+        }
     }, [isTablet])
 
     return (
         <section id="showcase">
             <div className="media">
-                <img src="./picture1.jpg" alt="" />
+                <video src="/videos/game.mp4" loop muted autoPlay playsInline />
                 <div className="mask">
                     <img src="/mask-logo.svg" />
                 </div>
@@ -88,5 +72,5 @@ const Showcase = memo(() => {
             </div>
         </section>
     )
-});
-export default Showcase;
+}
+export default Showcase

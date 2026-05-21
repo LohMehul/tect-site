@@ -8,10 +8,8 @@ import Performance from "./components/Performance.jsx";
 import Features from "./components/Features.jsx";
 import Highlights from "./components/Highlights.jsx";
 import Footer from "./components/Footer.jsx";
-import CallToAction from "./components/CallToAction.jsx";
-import StorySection from "./components/Story.jsx";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger)
 
 const App = () => {
     return (
@@ -22,9 +20,7 @@ const App = () => {
             <Showcase />
             <Performance />
             <Features />
-            <StorySection/>
             <Highlights />
-            <CallToAction />
             <Footer />
         </main>
     )
